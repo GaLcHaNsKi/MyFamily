@@ -1,0 +1,10 @@
+model Memory {
+    id           String       @id @default(uuid())
+    authorId     String
+    author       User
+    participants User[]
+    addedAt      DateTime     @db.DateTime
+    title        String
+    description  String?      @db.text
+    attachments  Attachment[]
+}

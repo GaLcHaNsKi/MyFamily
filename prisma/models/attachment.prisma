@@ -1,0 +1,17 @@
+model Attachment {
+    id       String @id @default(uuid())
+    memoryId String
+    
+    storageId String
+    storage Storage
+    extension String?
+    type AttachmentType
+
+
+}
+
+enum AttachmentType {
+    AUDIO
+    VIDEO
+    PHOTO
+}

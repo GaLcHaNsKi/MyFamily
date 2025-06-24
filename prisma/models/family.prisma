@@ -1,0 +1,6 @@
+model Family {
+    id String @id @default(uuid())
+    family String
+
+    members User[]
+}

@@ -1,10 +1,11 @@
 model User {
     id       String @id @default(uuid())
     familyId String
+    family Family @relation(fields: [familyId], references: [id])
 
     name     String
     surname  String
-    patronyn String?
+    patronym String?
 
     gender    Gender
     birthDate DateTime @db.Date
