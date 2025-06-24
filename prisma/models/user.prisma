@@ -1,0 +1,29 @@
+model User {
+    id       String @id @default(uuid())
+    familyId String
+
+    name     String
+    surname  String
+    patronyn String?
+
+    gender    Gender
+    birthDate DateTime @db.Date
+
+    dadId String?
+    dad   User?   @relation("DadRelation", fields: [dadId], references: [id])
+
+    momId String?
+    mom   User?   @relation("MomRelation", fields: [momId], references: [id])
+
+    partnerId String?
+    partner   User?   @relation("PartnerRelation", fields: [partnerId], references: [id])
+    
+    childrenAsDad      User[] @relation("DadRelation")
+    childrenAsMom      User[] @relation("MomRelation")
+    partners           User[] @relation("PartnerRelation")
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
