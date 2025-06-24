@@ -1,0 +1,7 @@
+model Storage {
+    id      String @id @default(uuid())
+    name    String
+    baseURL String
+
+    attachments Attachment[]
+}

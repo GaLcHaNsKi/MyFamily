@@ -1,17 +1,17 @@
 model Attachment {
     id       String @id @default(uuid())
     memoryId String
-    
+    memory   Memory @relation(fields: [memoryId], references: [id])
+
     storageId String
-    storage Storage
+    storage   Storage @relation(fields: [storageId], references: [id])
+
     extension String?
-    type AttachmentType
-
-
+    type      FileType
 }
 
-enum AttachmentType {
+enum FileType {
     AUDIO
     VIDEO
-    PHOTO
+    IMAGE
 }

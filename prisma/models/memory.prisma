@@ -1,10 +1,14 @@
 model Memory {
     id           String       @id @default(uuid())
+    
     authorId     String
-    author       User
+    author       User         @relation("Memories", fields: [authorId], references: [id])
+
     participants User[]
-    addedAt      DateTime     @db.DateTime
+    addedAt      DateTime     @db.Date
+    
     title        String
-    description  String?      @db.text
+    description  String?      @db.Text
+    
     attachments  Attachment[]
 }

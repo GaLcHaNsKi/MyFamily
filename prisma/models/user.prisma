@@ -1,7 +1,7 @@
 model User {
     id       String @id @default(uuid())
     familyId String
-    family Family @relation(fields: [familyId], references: [id])
+    family   Family @relation(fields: [familyId], references: [id])
 
     name     String
     surname  String
@@ -18,10 +18,13 @@ model User {
 
     partnerId String?
     partner   User?   @relation("PartnerRelation", fields: [partnerId], references: [id])
+
+    childrenAsDad User[]   @relation("DadRelation")
+    childrenAsMom User[]   @relation("MomRelation")
+    partners      User[]   @relation("PartnerRelation")
     
-    childrenAsDad      User[] @relation("DadRelation")
-    childrenAsMom      User[] @relation("MomRelation")
-    partners           User[] @relation("PartnerRelation")
+    memories      Memory[] @relation("Memories")
+    participance  Memory[]
 }
 
 enum Gender {
