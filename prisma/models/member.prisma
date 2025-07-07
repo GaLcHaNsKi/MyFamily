@@ -1,0 +1,36 @@
+model Member {
+    id   String @id @default(uuid())
+    name String // отображаемое имя
+
+    gender    Gender
+    birthDate DateTime @db.Date
+
+    userId String?
+    user   User?   @relation(fields: [userId], references: [id])
+
+    familyId String
+    family   Family @relation(fields: [familyId], references: [id])
+
+    dadId String?
+    dad   Member? @relation("DadRelation", fields: [dadId], references: [id])
+
+    momId String?
+    mom   Member? @relation("MomRelation", fields: [momId], references: [id])
+
+    partnerId String?
+    partner   Member? @relation("PartnerRelation", fields: [partnerId], references: [id])
+
+    isOlder Boolean @default(false) // вместо роли админа
+
+    childrenAsDad Member[] @relation("DadRelation")
+    childrenAsMom Member[] @relation("MomRelation")
+    partners      Member[] @relation("PartnerRelation")
+
+    memories     Memory[] @relation("Memories")
+    participance Memory[]
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}

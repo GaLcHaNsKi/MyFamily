@@ -1,26 +1,44 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFamilyDto } from './dto/create-family.dto';
 import { UpdateFamilyDto } from './dto/update-family.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class FamiliesService {
-  create(createFamilyDto: CreateFamilyDto) {
-    return 'This action adds a new family';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createFamilyDto: CreateFamilyDto) {
+    return this.prisma.family.create({
+      data: {
+        family: createFamilyDto.family,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all families`;
+  async findAll() {
+    return this.prisma.family.findMany({
+      include: { members: true },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} family`;
+  async findOne(id: string) {
+    return this.prisma.family.findUnique({
+      where: { id },
+      include: { members: true },
+    });
   }
 
-  update(id: number, updateFamilyDto: UpdateFamilyDto) {
-    return `This action updates a #${id} family`;
+  async update(id: string, updateFamilyDto: UpdateFamilyDto) {
+    return this.prisma.family.update({
+      where: { id },
+      data: updateFamilyDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} family`;
+  async remove(id: string) {
+    return this.prisma.family.delete({
+      where: { id },
+    });
   }
 }
+

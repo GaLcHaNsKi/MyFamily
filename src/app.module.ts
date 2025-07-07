@@ -7,9 +7,11 @@ import { FamiliesModule } from './families/families.module';
 import { TasksModule } from './tasks/tasks.module';
 import { NeedsModule } from './needs/needs.module';
 import { YearlyEventsModule } from './yearly_events/yearly_events.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { MembersModule } from './members/members.module';
 
 @Module({
-  imports: [UsersModule, MemoriesModule, AttachmentsModule, StoragesModule, FamiliesModule, TasksModule, NeedsModule, YearlyEventsModule],
+  imports: [UsersModule, MemoriesModule, AttachmentsModule, StoragesModule, FamiliesModule, TasksModule, NeedsModule, YearlyEventsModule, PrismaModule, MembersModule],
   controllers: [],
   providers: [],
 })

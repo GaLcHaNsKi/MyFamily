@@ -1,33 +1,8 @@
 model User {
-    id       String @id @default(uuid())
-    familyId String
-    family   Family @relation(fields: [familyId], references: [id])
+    id           String @id @default(uuid())
+    passwordHash String
 
-    name     String
-    surname  String
-    patronym String?
+    nickname String @unique // для поиска
 
-    gender    Gender
-    birthDate DateTime @db.Date
-
-    dadId String?
-    dad   User?   @relation("DadRelation", fields: [dadId], references: [id])
-
-    momId String?
-    mom   User?   @relation("MomRelation", fields: [momId], references: [id])
-
-    partnerId String?
-    partner   User?   @relation("PartnerRelation", fields: [partnerId], references: [id])
-
-    childrenAsDad User[]   @relation("DadRelation")
-    childrenAsMom User[]   @relation("MomRelation")
-    partners      User[]   @relation("PartnerRelation")
-    
-    memories      Memory[] @relation("Memories")
-    participance  Memory[]
-}
-
-enum Gender {
-    MALE
-    FEMALE
+    members Member[]
 }

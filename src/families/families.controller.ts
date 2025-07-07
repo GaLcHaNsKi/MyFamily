@@ -19,16 +19,16 @@ export class FamiliesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.familiesService.findOne(+id);
+    return this.familiesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFamilyDto: UpdateFamilyDto) {
-    return this.familiesService.update(+id, updateFamilyDto);
+    return this.familiesService.update(id, updateFamilyDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.familiesService.remove(+id);
+    return this.familiesService.remove(id);
   }
 }
