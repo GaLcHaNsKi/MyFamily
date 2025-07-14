@@ -1,7 +1,17 @@
 model Storage {
-    id      String @id @default(uuid())
-    name    String
-    baseURL String
+  id      String   @id @default(uuid())
+  name    String
+  baseURL String?
+  type    StorageType
+  config  Json?
 
-    attachments Attachment[]
+  attachments Attachment[]
+}
+
+enum StorageType {
+  LOCAL
+  MEGA
+  CLOUDINARY
+  BACKBLAZE_B2
+  DROPBOX
 }

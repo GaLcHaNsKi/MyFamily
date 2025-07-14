@@ -8,6 +8,8 @@ model Attachment {
 
     extension String?
     type      FileType
+    url       String
+    key       String // Уникальный ключ/путь файла в хранилище
 }
 
 enum FileType {

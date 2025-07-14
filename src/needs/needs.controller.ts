@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { NeedsService } from './needs.service';
 import { CreateNeedDto } from './dto/create-need.dto';
 import { UpdateNeedDto } from './dto/update-need.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('needs')
 export class NeedsController {
   constructor(private readonly needsService: NeedsService) {}
 
   @Post()
-  create(@Body() createNeedDto: CreateNeedDto) {
+  async create(@Body() createNeedDto: CreateNeedDto) {
     return this.needsService.create(createNeedDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.needsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.needsService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return this.needsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNeedDto: UpdateNeedDto) {
-    return this.needsService.update(+id, updateNeedDto);
+  async update(@Param('id') id: string, @Body() updateNeedDto: UpdateNeedDto) {
+    return this.needsService.update(id, updateNeedDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.needsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return this.needsService.remove(id);
   }
 }

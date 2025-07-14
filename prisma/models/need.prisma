@@ -1,0 +1,16 @@
+model Need {
+  id          String   @id @default(uuid())
+  title       String
+  description String?  @db.Text
+
+  authorId    String
+  author      Member   @relation("AuthoredNeeds", fields: [authorId], references: [id])
+  executors   Member[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deadline    DateTime?
+
+  isConfirmed Boolean?
+  isCompleted Boolean  @default(false)
+}

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Storage" ALTER COLUMN "baseURL" DROP NOT NULL;

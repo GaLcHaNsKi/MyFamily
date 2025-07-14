@@ -28,6 +28,15 @@ model Member {
 
     memories     Memory[] @relation("Memories")
     participance Memory[]
+
+    authoredNeeds Need[] @relation("AuthoredNeeds")
+    needs         Need[]
+
+    authoredTasks Task[] @relation("AuthoredTasks")
+    updatedTasks  Task[] @relation("UpdatedTasks")
+    tasks         Task[]
+    
+    yearlyEvents  YearlyEvent[]
 }
 
 enum Gender {

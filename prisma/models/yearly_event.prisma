@@ -1,0 +1,9 @@
+model YearlyEvent {
+  id          String   @id @default(uuid())
+  title       String
+  description String?  @db.Text
+  date        DateTime @db.Date
+
+  authorId    String
+  author      Member   @relation(fields: [authorId], references: [id])
+} 

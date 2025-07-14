@@ -9,9 +9,10 @@ import { NeedsModule } from './needs/needs.module';
 import { YearlyEventsModule } from './yearly_events/yearly_events.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { MembersModule } from './members/members.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UsersModule, MemoriesModule, AttachmentsModule, StoragesModule, FamiliesModule, TasksModule, NeedsModule, YearlyEventsModule, PrismaModule, MembersModule],
+  imports: [UsersModule, MemoriesModule, AttachmentsModule, StoragesModule, FamiliesModule, TasksModule, NeedsModule, YearlyEventsModule, PrismaModule, MembersModule, AuthModule],
   controllers: [],
   providers: [],
 })
